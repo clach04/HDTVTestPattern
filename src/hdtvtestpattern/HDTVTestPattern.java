@@ -1,0 +1,170 @@
+/***************************************************************************
+ *   Copyright (C) 2014 by Paul Lutus                                      *
+ *   http://arachnoid.com/administration                                   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+
+/*
+ * MainFrame.java
+ *
+ * Created on Nov 15, 2011, 12:48:07 AM
+ */
+package hdtvtestpattern;
+
+import java.awt.*;
+import java.awt.image.*;
+import java.io.*;
+import javax.imageio.*;
+
+/**
+ *
+ * @author lutusp
+ */
+final public class HDTVTestPattern extends javax.swing.JFrame {
+
+    String version = "2.0";
+    boolean borderless = true;
+    Dimension screenSize;
+    Dimension appSize;
+    ImagePanel imagePanel;
+    String[] instructions;
+
+    /** Creates new form MainFrame */
+    public HDTVTestPattern(String[] args) {
+        setInstructions();
+        imagePanel = new ImagePanel(this);
+        add(imagePanel);
+        if (args.length > 0 && args[0].equals("-f")) {
+            saveImageFile(imagePanel);
+        }
+        if (borderless) {
+            setAlwaysOnTop(true);
+            setUndecorated(true);
+            setResizable(false);
+        }
+        initComponents();
+        manageFullScreen(true);
+    }
+
+    private void saveImageFile(ImagePanel imagePanel) {
+        int width = 1920;
+        int height = 1080;
+        BufferedImage bi = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics g = bi.createGraphics();
+        imagePanel.renderPattern(g,width, height,false);
+        try {
+            ImageIO.write(bi, "PNG", new File(this.getClass().getSimpleName() + ".png"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void manageFullScreen(boolean full) {
+        GraphicsEnvironment graphicsEnvironment = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        final GraphicsDevice graphicsDevice = graphicsEnvironment.getDefaultScreenDevice();
+        if (full) {
+            if (!borderless) {
+                setSize(640, 480);
+            } else {
+                graphicsDevice.setFullScreenWindow(this);
+            }
+
+        } else {
+            graphicsDevice.setFullScreenWindow(null);
+
+        }
+        requestFocusInWindow();
+        setVisible(true);
+    }
+
+    protected void dismiss() {
+        manageFullScreen(false);
+        close();
+    }
+
+    private void setInstructions() {
+        instructions = new String[]{
+            "HDTV Flat-panel Test Pattern | Copyright 2011, P. Lutus | http://arachnoid.com/HDTVTestPattern",
+            "Display dimensions: %dx%d pixels.",
+            "Basic Settings (before fine-tuning to satisfy personal taste):",
+            ">This image has a white border. If you don't see it, set your panel's display area to \"full pixel\" mode (no overscan).",
+            ">Adjust the \"Brightness\" control so the levels to the left of the \"Black Reference\" line can't be distinguished (or black).",
+            ">Adjust the \"Contrast\" or \"Picture\" control so only the white levels to the right of the \"White Reference\" line can't be distinguished (or white).",
+            ">Adjust the \"Color\" control so only the color levels to the right of the \"White Reference\" line can't be distinguished.",
+            ">Adjust the \"Tint\" or \"Hue\" control to mid-range (preferred), or so the yellow color bar actually looks yellow.",
+            ">To exit, press any key or click your mouse."
+        };
+    }
+
+    private void close() {
+        dispose();
+        System.exit(0);
+    }
+
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+        // TODO add your handling code here:
+        dismiss();
+    }//GEN-LAST:event_formKeyPressed
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        // TODO add your handling code here:
+        dismiss();
+    }//GEN-LAST:event_formMouseClicked
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(final String args[]) {
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                System.setProperty("awt.useSystemAAFontSettings", "on");
+                System.setProperty("swing.aatext", "true");
+                new HDTVTestPattern(args).setVisible(true);
+            }
+        });
+    }
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // End of variables declaration//GEN-END:variables
+}
