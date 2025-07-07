@@ -17,7 +17,14 @@ Version 2.0 (08.30.2014)
 
 (double-click any word to see its definition)
 
-FIXME TOC
+- [HDTV Test Pattern](#hdtv-test-pattern)
+  * [Introduction](#introduction)
+  * [Acquire, Install](#acquire--install)
+  * [Run, Display](#run--display)
+  * [Use](#use)
+  * [Copyright, Version](#copyright--version)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 
 FIXME
