@@ -89,11 +89,11 @@ as a PNG grahic image. Here are the download options:
 
 FIXME link URLs
 
-- [HDTVTestPattern.jar](resources/HDTVTestPattern.jar) — the Java
+- [HDTVTestPattern.jar](https://github.com/clach04/HDTVTestPattern/releases/download/v2.0/HDTVTestPattern.jar) — the Java
   program.
-- [HDTVTestPattern.png](resources/HDTVTestPattern.png) — a 1920x1080
+- [HDTVTestPattern.png](https://github.com/clach04/HDTVTestPattern/releases/download/v2.0/HDTVTestPattern_1080p.png) — a 1920x1080
   size graphic of the Java program's output.
-- [HDTVTestPattern_source.tar.bz2](resources/HDTVTestPattern_source.tar.bz2)
+- [HDTVTestPattern_source.tar.bz2](https://github.com/clach04/HDTVTestPattern/archive/refs/tags/v2.0.tar.gz)
   — a source archive for the Java program, organized as a NetBeans
   project, released under the
   [GPL](http://www.gnu.org/copyleft/gpl.html).
