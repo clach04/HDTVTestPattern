@@ -2,6 +2,8 @@
 
 *A resource for configuring flat-panel video displays*
 
+Also see https://github.com/clach04/cyd_clocks#test-images
+
 — [P. Lutus](https://arachnoid.com/administration/index.html) —
 [Message Page](https://arachnoid.com/messages) —
 
